@@ -10,6 +10,8 @@ import com.example.springFirstApp.util.Result;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api")
+@Valid()
 public class PersonaController {
 
     List<Persona> personas = new ArrayList<>();
@@ -33,9 +36,9 @@ public class PersonaController {
     }
 
     @PostMapping("/create")
-    public Result<List<Persona>> createPersona(@RequestBody PersonaDto persona){
-
-        return null;
+    public Result<List<Persona>> createPersona(@Valid @RequestBody PersonaDto PersonaDto){
+//        personas.add( persona);
+        return ResponseEntity.ok(Result.success(personas, "Personas obtenidas con exito")).getBody();
     }
 
 }

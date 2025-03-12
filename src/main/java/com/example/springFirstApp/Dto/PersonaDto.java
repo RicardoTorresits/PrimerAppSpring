@@ -1,65 +1,49 @@
 package com.example.springFirstApp.Dto;
 
 
+import com.example.springFirstApp.models.Persona;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
-public class PersonaDto {
-    @NonNull(message = "El ID no puede ser nulo")
-    private Integer id;
 
-    @NonNull(message = "El nombre no puede estar vacío")
-    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
-    private String name;
+@JsonIgnoreProperties(ignoreUnknown = false)
+public class PersonaDto  {
+    private final Integer id;
+    private final String name;
+    private final String correo;
+    private final int edad;
 
-    @Email(message = "El correo debe ser válido")
-    private String email;
 
-    @NonNull (message = "la edad no puede ser vacia")
-    private int edad;
-
-    public PersonaDto() {
-    }
-
-    public PersonaDto(@NonNull Integer id, @NonNull String name, String email, int edad) {
+    @JsonCreator
+    public PersonaDto(
+            @JsonProperty("id") Integer id,
+            @JsonProperty("name") String name,
+            @JsonProperty("correo") String correo,
+            @JsonProperty("edad") int edad) {
         this.id = id;
         this.name = name;
-        this.email = email;
+        this.correo = correo;
         this.edad = edad;
     }
 
-    @NonNull
+    // Getters (no necesitas setters si la clase es inmutable)
     public Integer getId() {
         return id;
     }
 
-    public void setId(@NonNull Integer id) {
-        this.id = id;
-    }
-
-    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(@NonNull String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public String getCorreo() {
+        return correo;
     }
 
     public int getEdad() {
         return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 }

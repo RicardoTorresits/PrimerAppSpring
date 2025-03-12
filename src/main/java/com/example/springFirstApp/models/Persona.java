@@ -4,6 +4,8 @@
  */
 package com.example.springFirstApp.models;
 
+import com.example.springFirstApp.Dto.PersonaDto;
+
 /**
  *
  * @author it-seekers
@@ -14,7 +16,7 @@ public class Persona {
     private String correo;
     private int edad;
 
-    public Persona() {
+    public Persona(PersonaDto persona) {
     }
 
     public Persona(int id, String name, String correo, int edad) {

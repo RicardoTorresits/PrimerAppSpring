@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.example.controllers;
+package com.example.springFirstApp.controllers;
 
-import com.example.models.Persona;
-import com.example.util.Result;
+import com.example.springFirstApp.Dto.PersonaDto;
+import com.example.springFirstApp.models.Persona;
+import com.example.springFirstApp.util.Result;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -30,6 +30,12 @@ public class PersonaController {
         personas.add(new Persona(4, "Ricardo", "ricardo@yopmail.com", 27));
 
         return Result.success(personas, "Personas obtenidas con exito");
+    }
+
+    @PostMapping("/create")
+    public Result<List<Persona>> createPersona(@RequestBody PersonaDto persona){
+
+        return null;
     }
 
 }

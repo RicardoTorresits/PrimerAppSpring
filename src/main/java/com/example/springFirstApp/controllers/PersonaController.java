@@ -41,4 +41,22 @@ public class PersonaController {
         return ResponseEntity.ok(Result.success(personas, "Personas obtenidas con exito")).getBody();
     }
 
+
+    @PutMapping("/edit/{id}")
+    public Result<List<Persona>> createPersona(@PathVariable Integer id ,@Valid @RequestBody Persona Persona){
+        personas.add(new Persona(1, "Mariana", "mariana@yopmail.com", 24));
+        personas.add(new Persona(2, "Rafa", "rafa@yopmail.com", 24));
+        personas.add(new Persona(3, "Daniel", "daniel@yopmail.com", 24));
+        personas.add(new Persona(4, "Ricardo", "ricardo@yopmail.com", 27));
+
+        for (int i = 0; i <= personas.size(); i++) {
+            if(personas.get(i).getId() == id){
+                personas.set(i,Persona);
+                return Result.success(personas, "Personas Actualizada con exito");
+            }
+        }
+
+        return Result.failure( "Personas no encontrada");
+    }
+
 }

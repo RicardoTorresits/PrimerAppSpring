@@ -12,18 +12,15 @@ import org.springframework.lang.NonNull;
 
 @JsonIgnoreProperties(ignoreUnknown = false)
 public class PersonaDto  {
-    private final Integer id;
-    private final String name;
-    private final String correo;
-    private final int edad;
+    private  Integer id;
+    private  String name;
+    private  String correo;
+    private  int edad;
 
+    public PersonaDto() {
+    }
 
-    @JsonCreator
-    public PersonaDto(
-            @JsonProperty("id") Integer id,
-            @JsonProperty("name") String name,
-            @JsonProperty("correo") String correo,
-            @JsonProperty("edad") int edad) {
+    public PersonaDto(Integer id, String name, String correo, int edad) {
         this.id = id;
         this.name = name;
         this.correo = correo;

@@ -59,4 +59,21 @@ public class PersonaController {
         return Result.failure( "Personas no encontrada");
     }
 
+    @DeleteMapping("/delete/{id}")
+    public Result<List<Persona>> deletePersona(@PathVariable Integer id){
+        personas.add(new Persona(1, "Mariana", "mariana@yopmail.com", 24));
+        personas.add(new Persona(2, "Rafa", "rafa@yopmail.com", 24));
+        personas.add(new Persona(3, "Daniel", "daniel@yopmail.com", 24));
+        personas.add(new Persona(4, "Ricardo", "ricardo@yopmail.com", 27));
+
+        for (int i = 0; i <= personas.size(); i++) {
+            if(personas.get(i).getId() == id){
+                personas.remove(personas.get(i));
+                return Result.success(personas, "Personas Eliminada con exito");
+            }
+        }
+
+        return Result.failure( "Personas no encontrada");
+    }
+
 }

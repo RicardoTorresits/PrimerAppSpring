@@ -11,6 +11,10 @@ public class PersonaService {
     private int nextId = 1;
 
     public  List<Persona> getPersonas() {
+        personas.add(new Persona(1, "Mariana", "mariana@yopmail.com", 24));
+        personas.add(new Persona(2, "Rafa", "rafa@yopmail.com", 24));
+        personas.add(new Persona(3, "Daniel", "daniel@yopmail.com", 24));
+        personas.add(new Persona(4, "Ricardo", "ricardo@yopmail.com", 27));
         return personas;
     }
 

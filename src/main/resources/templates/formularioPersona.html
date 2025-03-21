@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Persona</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fuente personalizada (opcional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #555;
+        }
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .form-control:invalid {
+            border-color: #dc3545;
+        }
+        .form-control:valid {
+            border-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Formulario de Persona</h1>
+    <form method="post" th:action="${persona.id == 0} ? @{/api/create} : @{/api/editar}"
+          th:object="${persona}">
+        <!-- Campo oculto para el ID -->
+        <input type="hidden" th:field="*{id}">
+
+        <!-- Campo para el nombre -->
+        <div class="mb-4">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{name}" required>
+            <div class="invalid-feedback">Por favor, ingresa un nombre válido.</div>
+        </div>
+
+        <!-- Campo para la edad -->
+        <div class="mb-4">
+            <label for="edad" class="form-label">Edad:</label>
+            <input type="number" class="form-control" id="edad" th:field="*{edad}" required min="1">
+            <div class="invalid-feedback">Por favor, ingresa una edad válida.</div>
+        </div>
+
+        <!-- Campo para el correo electrónico -->
+        <div class="mb-4">
+            <label for="correo" class="form-label">Correo electrónico:</label>
+            <input type="email" class="form-control" id="correo" th:field="*{correo}" required>
+            <div class="invalid-feedback">Por favor, ingresa un correo válido.</div>
+        </div>
+
+        <!-- Botón de guardar -->
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+
+    <!-- Enlace para volver a la lista -->
+    <div class="mt-4 text-center">
+        <a th:href="@{/api/}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
